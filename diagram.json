@@ -1,0 +1,93 @@
+{
+    "version": 1,
+    "author": "Fernando Hali",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "wokwi-breadboard-half", "id": "bb1", "top": 6.6, "left": -515.6, "attrs": {} },
+      { "type": "board-pi-pico-w", "id": "pico", "top": 25.55, "left": -111.65, "attrs": {} },
+      {
+        "type": "wokwi-buzzer",
+        "id": "bz1",
+        "top": 40.8,
+        "left": -516.6,
+        "attrs": { "volume": "0.1" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": 34.8,
+        "left": -389.8,
+        "attrs": { "color": "green" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led2",
+        "top": 34.8,
+        "left": -370.6,
+        "attrs": { "color": "blue" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led3",
+        "top": 34.8,
+        "left": -351.4,
+        "attrs": { "color": "red" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": 120,
+        "left": -403.75,
+        "rotate": 90,
+        "attrs": { "value": "220" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r2",
+        "top": 120,
+        "left": -384.55,
+        "rotate": 90,
+        "attrs": { "value": "220" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r3",
+        "top": 120,
+        "left": -365.35,
+        "rotate": 90,
+        "attrs": { "value": "220" }
+      }
+    ],
+    "connections": [
+      [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+      [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+      [ "bb1:bn.5", "bb1:bn.6", "black", [ "v0" ] ],
+      [ "bb1:bn.10", "bb1:bn.11", "black", [ "v0" ] ],
+      [ "bb1:bn.15", "bb1:bn.16", "black", [ "v0" ] ],
+      [ "bb1:bn.20", "bb1:bn.21", "black", [ "v0" ] ],
+      [ "bb1:bn.12", "bb1:13b.j", "black", [ "v-20.5", "h-17.6" ] ],
+      [ "bb1:bn.13", "bb1:15b.j", "black", [ "v-20.5", "h-8" ] ],
+      [ "bb1:bn.14", "bb1:17b.j", "black", [ "v-20.5", "h-8", "v-19.2" ] ],
+      [ "pico:GP13", "bb1:14t.e", "orange", [ "h0" ] ],
+      [ "pico:GP12", "bb1:16t.e", "gold", [ "h0" ] ],
+      [ "pico:GP11", "bb1:18t.e", "green", [ "h0" ] ],
+      [ "pico:GND.4", "bb1:bn.25", "black", [ "h-105.6", "v9.64" ] ],
+      [ "bb1:bn.1", "bb1:1b.j", "black", [ "v-20.5", "h-8" ] ],
+      [ "bz1:1", "bb1:1b.f", "", [ "$bb" ] ],
+      [ "bz1:2", "bb1:2b.f", "", [ "$bb" ] ],
+      [ "led1:A", "bb1:14t.c", "", [ "$bb" ] ],
+      [ "led1:C", "bb1:13t.c", "", [ "$bb" ] ],
+      [ "led2:A", "bb1:16t.c", "", [ "$bb" ] ],
+      [ "led2:C", "bb1:15t.c", "", [ "$bb" ] ],
+      [ "led3:A", "bb1:18t.c", "", [ "$bb" ] ],
+      [ "led3:C", "bb1:17t.c", "", [ "$bb" ] ],
+      [ "r1:1", "bb1:13t.e", "", [ "$bb" ] ],
+      [ "r1:2", "bb1:13b.i", "", [ "$bb" ] ],
+      [ "r2:1", "bb1:15t.e", "", [ "$bb" ] ],
+      [ "r2:2", "bb1:15b.i", "", [ "$bb" ] ],
+      [ "r3:1", "bb1:17t.e", "", [ "$bb" ] ],
+      [ "r3:2", "bb1:17b.i", "", [ "$bb" ] ],
+      [ "bb1:2b.j", "pico:GP10", "green", [ "v57.6", "h307.2", "v-67.2" ] ]
+    ],
+    "dependencies": {}
+  }
