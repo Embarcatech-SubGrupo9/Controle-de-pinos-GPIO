@@ -3,15 +3,15 @@
 #include <string.h>
 #include "pico/stdlib.h"
 #include "pico/bootrom.h"
+#include "hardware/pwm.h"
 
-// Variaveis dos LEDs
+// Variáveis dos LEDs
 #define LED_VERDE 11
 #define LED_AZUL 12
 #define LED_VERMELHO 13
-
 #define BUZZER_PIN 10
 
-void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t freguencia, uint32_t duracao);
+void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t frequencia, uint32_t duracao);
 void inicializar();
 void desligar_leds();
 void ligar_leds(uint led);
@@ -21,7 +21,6 @@ int main()
 {
 	stdio_init_all();
 	inicializar();
-	stdio_init_all();
 	char buffer[1024];
 	int num;
 	char *endptr;
@@ -33,39 +32,48 @@ int main()
 	uint32_t numero_faixa = pwm_gpio_to_slice_num(BUZZER_PIN); // Obtendo o número da faixa do PWM
 	uint32_t canal = pwm_gpio_to_channel(BUZZER_PIN);		   // Obtendo o canal do PWM
 
-	char comando;
-	// funcao para pegar o comando do usuario e ligar o respectivo LED
-	while (true)
+	while (1)
 	{
-		comando = getchar_timeout_us(1000000);
-		switch (comando)
+		scanf("%1024s", buffer);
+		printf("%s\n", buffer);
+		token = strtok(buffer, "-");
+
+		if (strcmp(buffer, "green") == 0)
 		{
-		case '1':
 			ligar_leds(LED_VERDE);
 			printf("Ligando LED Verde\n");
 			sleep_ms(100);
-			break;
-		case '2':
+		}
+		else if (strcmp(buffer, "blue") == 0)
+		{
 			ligar_leds(LED_AZUL);
 			printf("Ligando LED Azul\n");
 			sleep_ms(100);
-			break;
-		case '3':
+		}
+		else if (strcmp(buffer, "red") == 0)
+		{
 			ligar_leds(LED_VERMELHO);
 			printf("Ligando LED Vermelho\n");
 			sleep_ms(100);
-			break;
-		case '4':
+		}
+		else if (strcmp(buffer, "white") == 0)
+		{
 			ligar_todosLeds();
 			printf("Ligando todos os LEDs\n");
 			sleep_ms(100);
-			break;
-		case '0':
+		}
+		else if (strcmp(buffer, "off") == 0)
+		{
 			desligar_leds();
 			printf("Desligando todos os LEDs\n");
 			sleep_ms(100);
-			break;
-		case 'BUZZER':
+		}
+		else if (strcmp(buffer, "boot") == 0)
+		{
+			// teste deixa assim
+		}
+		else if (strcmp(token, "buzzer") == 0)
+		{
 			printf("%s\n", token);
 
 			token = strtok(NULL, "-");
@@ -77,13 +85,8 @@ int main()
 			if (num % 1 == 0)
 				num = 50;
 			tocar_buzzer(numero_faixa, canal, num, 2000);
-			break;
-		default:
-			sleep_ms(100);
-			break;
 		}
 	}
-	return 0;
 }
 
 void inicializar()
@@ -95,7 +98,8 @@ void inicializar()
 	gpio_set_dir(LED_AZUL, GPIO_OUT);
 	gpio_set_dir(LED_VERMELHO, GPIO_OUT);
 }
-// funcao para desligar os LEDs
+
+// Função para desligar os LEDs
 void desligar_leds()
 {
 	gpio_put(LED_VERDE, 0);
@@ -117,10 +121,10 @@ void ligar_todosLeds()
 }
 
 // Função para acionamento do buzzer
-void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t freguencia, uint32_t duracao)
+void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t frequencia, uint32_t duracao)
 {
 	uint32_t Freq_clock = 125000000;						   // Frequência do clock padrão da RP2040
-	uint32_t divisor_clock = (Freq_clock / freguencia) / 4096; // Divisor correto do clock
+	uint32_t divisor_clock = (Freq_clock / frequencia) / 4096; // Divisor correto do clock
 
 	// Configurando o PWM
 	pwm_config config = pwm_get_default_config();
