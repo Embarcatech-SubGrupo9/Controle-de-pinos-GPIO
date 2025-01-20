@@ -88,4 +88,4 @@ Os seguintes testes básicos foram implementados:
 
 
 ## Link do vídeo ensaio
-[Vídeo da prática](#) *(Adicionar link após a produção do vídeo)*
+[https://www.dropbox.com/scl/fi/utrbxgyvqroshlq5xb31b/Apresenta-oInterfaceSerialUART.mp4?rlkey=1j9c3smwtxoyojyovws8ws78h&st=qfd5ikz0&dl=0]
