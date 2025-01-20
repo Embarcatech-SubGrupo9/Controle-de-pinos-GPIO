@@ -53,7 +53,6 @@ As funcionalidades implementadas incluem:
 
 - **Líder**: *Fernando Hali Santos Andrade*  
 - **Desenvolvedores**
-- Angela Marim Bosetti  
 - Leandro Alves dos Santos  
 - Heli Neres Silva  
 - Gabriel Adriano de Jesus Reis  
