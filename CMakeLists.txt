@@ -74,7 +74,8 @@ pico_enable_stdio_usb(Controle-de-pinos-GPIO 1)
 
 # Add the standard library to the build
 target_link_libraries(Controle-de-pinos-GPIO
-        pico_stdlib)
+        pico_stdlib
+        hardware_pwm)
 
 # Add the standard include files to the build
 target_include_directories(Controle-de-pinos-GPIO PRIVATE
