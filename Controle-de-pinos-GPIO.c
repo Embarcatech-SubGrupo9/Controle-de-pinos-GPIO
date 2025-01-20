@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 #include "pico/bootrom.h"
 #include "hardware/pwm.h"
+#include "hardware/watchdog.h"
 
 // Variáveis dos LEDs
 #define LED_VERDE 11
@@ -16,6 +17,7 @@ void inicializar();
 void desligar_leds();
 void ligar_leds(uint led);
 void ligar_todosLeds();
+void reboot_sistema();
 
 int main()
 {
@@ -70,7 +72,7 @@ int main()
 		}
 		else if (strcmp(buffer, "boot") == 0)
 		{
-			// teste deixa assim
+			reboot_sistema();
 		}
 		else if (strcmp(token, "buzzer") == 0)
 		{
@@ -141,4 +143,8 @@ void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t frequencia, uint32_t 
 
 	// Desliga o PWM
 	pwm_set_enabled(FAIXA, false);
+}
+
+void reboot_sistema(){
+	reset_usb_boot(0,0);
 }
