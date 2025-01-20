@@ -146,5 +146,5 @@ void tocar_buzzer(uint32_t FAIXA, uint32_t CANAL, uint32_t frequencia, uint32_t 
 }
 
 void reboot_sistema(){
-	watchdog_reboot(0, 0, 0);
+	reset_usb_boot(0,0);
 }
